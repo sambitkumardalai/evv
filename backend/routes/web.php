@@ -17,4 +17,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get("/employees", "EmployeeController@getEmployees");
+$router->get("/employees", "EmployeeController@getEmployees"); // all employee
+$router->get("/employees/{id}", "EmployeeController@getEmployeeById"); // single employee
+$router->post("/addEmployee", "EmployeeController@addEmployee"); // single employee
+$router->put("/updateEmployee/{id}", "EmployeeController@updateEmployee"); // single employee
+$router->delete("/deleteEmployee/{id}", "EmployeeController@deleteEmployee"); // single employee

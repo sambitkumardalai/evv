@@ -1,3 +1,34 @@
+<form (ngSubmit)="insertData()">
+  <div class="form-group">
+    <label for="name">Name </label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      [(ngModel)]="employee.name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      name="email"
+      class="form-control"
+      [(ngModel)]="employee.email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="salary">Salary</label>
+    <input
+      type="text"
+      name="salary"
+      class="form-control"
+      [(ngModel)]="employee.salary"
+    />
+  </div>
+  <button class="btn btn-dark btn-sm mt-4" type="submit">Submit</button>
+</form>
+
 <table class="table">
   <thead>
     <tr>
@@ -5,14 +36,26 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Salary</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let emp of employees">
       <th scope="row">{{ emp.recNo }}</th>
-      <th scope="row">{{ emp.name }}</th>
-      <th scope="row">{{ emp.email }}</th>
-      <th scope="row">{{ emp.salary }}</th>
+      <td scope="row">{{ emp.name }}</td>
+      <td scope="row">{{ emp.email }}</td>
+      <td scope="row">{{ emp.salary }}</td>
+      <td>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="deleteData(emp.recNo)"
+        >
+          Delete
+        </button>
+        <button class="btn btn-warning btn-sm mx-2" routerLink="edit/{{ emp.recNo }}">
+          Edit
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

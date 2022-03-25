@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Employee } from 'src/app/employee';
 import { DataService } from 'src/app/service/data.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class EmployeesComponent implements OnInit {
   employees: any;
+  employee = new Employee();
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
@@ -18,5 +20,13 @@ export class EmployeesComponent implements OnInit {
       this.employees = res;
       this.employees = this.employees.employees;
     });
+  }
+  insertData() {
+    this.dataService
+      .insertData(this.employee)
+      .subscribe((res) => this.getEmployeesData());
+  }
+  deleteData(id: any) {
+    this.dataService.deleteData(id).subscribe((res) => this.getEmployeesData());
   }
 }
